@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Result from "./Result";
 import Loading from "./Loading";
 import { toast } from "react-toastify";
 
-export default function () {
+function Header() {
   const [videoUrl, setVideoUrl] = useState("");
   const [data, setData] = useState({});
   const [result, setResult] = useState(false);
@@ -11,12 +11,13 @@ export default function () {
   const [loading, setLoading] = useState(false);
 
   const baseUrl = process.env.REACT_APP_BASE_URL;
+  // const baseUrl = "http://localhost:5000/api/download";
 
   const handleSubmit = async () => {
     if (videoUrl) {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:5000/api/download", {
+        const response = await fetch(`${baseUrl}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ videoUrl }),
@@ -96,3 +97,5 @@ export default function () {
     </div>
   );
 }
+
+export default Header;

@@ -10,7 +10,7 @@ export default function Navbar() {
     <div>
       <div className="navbar bg-base-100 rounded-b-xl">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl font-bold">
+          <a href="/" className="btn btn-ghost normal-case text-xl font-bold">
             <span className="text-4xl text-red-600">Y</span>
             <span className="font-serif mt-2">mp4</span>
           </a>

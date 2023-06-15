@@ -1,27 +1,44 @@
 import React, { useEffect, useState } from "react";
 import Result from "./Result";
-import axios from "axios";
+import Loading from "./Loading";
+import { toast } from "react-toastify";
 
 export default function () {
   const [videoUrl, setVideoUrl] = useState("");
   const [data, setData] = useState({});
   const [result, setResult] = useState(false);
   const [error, setError] = useState("");
-  // const url = "http://localhost:5000";
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (videoUrl) {
-      setVideoUrl("");
       try {
+        setLoading(true);
         const response = await fetch("http://localhost:5000/api/download", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ videoUrl }),
         });
         const data = await response.json();
+        if (data.success) {
+          setVideoUrl("");
+          setData(data);
+          setResult(true);
+        }
+        if (data?.error) {
+          toast.error(`${data?.error}`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
 
-        setData(data.data);
-        setResult(true);
+        setLoading(false);
       } catch (error) {
         setError(error);
       }
@@ -53,6 +70,7 @@ export default function () {
               type="text"
               name=""
               placeholder="Enter link here ..."
+              required
               onChange={(e) => setVideoUrl(e.target.value)}
             />
             <button
@@ -65,6 +83,7 @@ export default function () {
           </div>
         </div>
       </div>
+      {loading && <Loading />}
       {result ? (
         <Result videoUrl={videoUrl} data={data} />
       ) : (

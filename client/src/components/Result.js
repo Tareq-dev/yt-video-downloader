@@ -1,44 +1,33 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { saveAs } from "file-saver";
+
 function Result({ data }) {
   const [resu, setResu] = useState("");
-  const [loader, setLoader] = useState(false);
-  const [videoInfo, setVideoInfo] = useState("");
+  const formateData = data?.data?.formateData.info.filter(
+    (f) => f.hasAudio === true
+  );
   const handleVideoDownload = async () => {
-    const videoId = data.videoUrl.split("https://www.youtube.com/watch?v=")[1];
-    try {
-      setLoader(true);
-      console.log(resu);
-      const { data } = await axios.get(
-        `http://localhost:5000/api/get-video-info/${videoId}`
-      );
-      setLoader(false);
-      setVideoInfo(data.videoInfo);
-      setResu(data.videoInfo.videoInfo.videoResu[0]);
-    } catch (error) {
-      console.log(error.response);
-    }
+    saveAs(resu);
   };
-  const video_download = () => {
-    const videoId = data.videoUrl.split("https://www.youtube.com/watch?v=")[1];
-    const url = `http://localhost:5000/video-download?id=${videoId}&resu=${resu}`;
-    window.location.href = url;
-  };
+
   return (
     <div className="flex justify-center mt-8 mx-2">
       <div className="md:flex md:w-[800px] py-8 bg-white px-4 rounded-lg">
         <div className="w-full md:w-1/2 flex justify-center items-center">
           <img
             className="w-full md:w-[300px] rounded-lg"
-            src={data?.thumbnail}
+            src={data?.data?.thumbnail}
             alt=""
           />
         </div>
         <div className="md:w-1/2 ml-2">
-          <h2 className="text-xl font-semibold py-1">{data?.title}</h2>
-          <p className="text-xl pt-4">Uploaded Date : {data?.uploadDate}</p>
+          <h2 className="text-xl font-semibold py-1">{data?.data?.title}</h2>
+          <p className="text-xl pt-4">
+            Uploaded Date : {data?.data?.uploadDate}
+          </p>
           <p className="text-xl font-bold pt-4">Choose Download Formate</p>
           <div className="flex justify-center  md:justify-start">
+            <div></div>
             <div className="pt-4">
               <select
                 onChange={(e) => setResu(e.target.value)}
@@ -46,19 +35,21 @@ function Result({ data }) {
                 name=""
                 id=""
               >
-                {data?.quality.length > 0 &&
-                  data?.quality.map((v, i) => (
-                    <option key={i} defaultValue={v}>
-                      {v}p
-                    </option>
-                  ))}
+                {formateData?.map((formatName, index) => (
+                  <option key={index} value={formatName.url}>
+                    <div>
+                      {formatName.mimeType.split(";")[0] + "  "}
+                      {formatName.hasVideo ? formatName.height + "p" : ""}
+                    </div>
+                  </option>
+                ))}
               </select>
               <button
-                onClick={video_download}
+                onClick={handleVideoDownload}
                 className="px-4  bg-green-500 hover:bg-green-600 rounded-lg text-white font-serif text-xl py-1 mr-5"
                 type=""
               >
-                Video
+                Download
               </button>
             </div>
           </div>

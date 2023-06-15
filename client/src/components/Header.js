@@ -10,6 +10,8 @@ export default function () {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+
   const handleSubmit = async () => {
     if (videoUrl) {
       try {

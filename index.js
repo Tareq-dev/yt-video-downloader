@@ -4,19 +4,15 @@ const cors = require("cors");
 const ytdl = require("ytdl-core");
 const bodyParser = require("body-parser");
 const compression = require("compression");
-
-// app.use(express.json());
+ 
 app.use(cors());
-
-// Express 4.0
+ 
 app.use(compression());
 app.use(bodyParser.json({ limit: "10mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
 
-// Express 3.0
 app.use(express.json({ limit: "10mb" }));
-// app.use(express.urlencoded({ limit: "10mb" }));
-// Searching API
+ 
 
 app.post("/api/get-info", async (req, res) => {
   const { videoUrl } = req.body;
@@ -59,11 +55,7 @@ app.get("/download", async (req, res) => {
       "Content-Disposition",
       `attachment; filename="${encodeURIComponent(result)}.mp4"`
     );
-
-    // ytdl(videoUrl, { format: videoFormat }).pipe(res);
-    ytdl(videoUrl, { format: videoFormat })
-      .on("data", (chunk) => res.write(chunk))
-      .on("end", () => res.end())._eventsCount;
+    ytdl(videoUrl, { format: videoFormat }).pipe(res);
   } catch (error) {
     res.status(400).send({ error: "Invalid video URL" });
   }

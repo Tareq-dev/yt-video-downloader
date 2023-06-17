@@ -10,14 +10,14 @@ function Header() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const baseUrl = process.env.REACT_APP_BASE_URL;
-  // const baseUrl = "http://localhost:5000/api/download";
+  // const baseUrl = process.env.REACT_APP_BASE_URL;
+  const baseUrl = "http://localhost:5000";
 
   const handleSubmit = async () => {
     if (videoUrl) {
       try {
         setLoading(true);
-        const response = await fetch(`${baseUrl}`, {
+        const response = await fetch(`${baseUrl}/api/get-info`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ videoUrl }),
@@ -51,8 +51,8 @@ function Header() {
   };
   return (
     <div>
-      <h1 className="text-3xl md:text-4xl text-center text-white font-extrabold pt-14">
-        Youtube to mp3 Downloader
+      <h1 className="text-3xl md:text-4xl text-center text-white font-extrabold pt-14 pb-2">
+        Youtube <span className="text-red-700 underline">Video</span> Downloader
       </h1>
       <p className="text-lg md:text-xl text-center pt-2 font-bold">
         Download Youtube Video . Convert to mp4 Format

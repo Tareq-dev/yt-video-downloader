@@ -20,7 +20,6 @@ export default function Navbar() {
         <img className="w-6 mr-3" src={instagram} alt="" />
         <img className="w-6 mr-3" src={youtube} alt="" />
         <img className="w-6 mr-3" src={linkedin} alt="" />
-        <img className="w-6 mr-3" src={whatapp} alt="" />
       </div>
     </div>
   );

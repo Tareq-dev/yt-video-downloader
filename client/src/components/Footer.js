@@ -8,21 +8,33 @@ const Footer = () => {
     <div className="py-5 bg-black mt-10 text-white flex justify-center">
       <div>
         <div className="flex mt-2">
-          <a className="mx-2" href="/">
+          <a
+            className="mx-2"
+            target="_blank"
+            href="https://www.linkedin.com/in/tareq-dev"
+          >
             <img
               className="w-6"
               src="https://i.ibb.co/K5cYZZs/icons8-linkedin-48.png"
               alt="Linkedin"
             />
           </a>
-          <a className="mx-2" href="/">
+          <a
+            className="mx-2"
+            target="_blank"
+            href="https://github.com/Tareq-dev"
+          >
             <img
               className="w-6"
               src="https://i.ibb.co/mzvZv6L/icons8-github-48.png"
               alt="github"
             />
           </a>
-          <a className="mx-2" href="/">
+          <a
+            className="mx-2"
+            target="_blank"
+            href="https://www.facebook.com/tareq.servant"
+          >
             <img
               className="w-6"
               src="https://i.ibb.co/gFgRxG2/icons8-facebook-48.png"

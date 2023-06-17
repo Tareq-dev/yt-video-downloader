@@ -13,7 +13,7 @@ function Result({ data }) {
   };
 
   // const baseUrl = process.env.REACT_APP_BASE_URL;
-  // const baseUrl = "http://localhost:4000";
+  const baseUrl = "http://localhost:5000";
 
   return (
     <div className="flex justify-center mt-8 mx-2">
@@ -33,14 +33,14 @@ function Result({ data }) {
 
           <form action="GET" className="flex justify-center md:block my-4">
             <a
-              href={`http://localhost:5000/download?url=${videoUrl}`}
+              href={`${baseUrl}/download?url=${videoUrl}`}
               download
               className="bg-green-500 hover:bg-green-600 px-2 py-1  font-serif rounded-md text-white"
             >
               🔥 One Click Download 🔥
             </a>
           </form>
-          <p className="text-xl font-bold">Choose  Formate</p>
+          <p className="text-xl font-bold">Choose Formate</p>
           <div className="flex justify-center  md:justify-start">
             <div className="pt-4">
               <select

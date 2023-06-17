@@ -2,10 +2,18 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const ytdl = require("ytdl-core");
+const bodyParser = require("body-parser");
 
-app.use(express.json());
+// app.use(express.json());
 app.use(cors());
 
+// Express 4.0
+app.use(bodyParser.json({ limit: "10mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
+
+// Express 3.0
+app.use(express.json({ limit: "10mb" }));
+// app.use(express.urlencoded({ limit: "10mb" }));
 // Searching API
 
 app.post("/api/get-info", async (req, res) => {

@@ -61,11 +61,9 @@ app.get("/download", async (req, res) => {
     );
 
     // ytdl(videoUrl, { format: videoFormat }).pipe(res);
-    const ok = await ytdl(videoUrl, { format: videoFormat })
+    ytdl(videoUrl, { format: videoFormat })
       .on("data", (chunk) => res.write(chunk))
-      .on("end", () => res.end());
-
-    console.log(ok);
+      .on("end", () => res.end())._eventsCount;
   } catch (error) {
     res.status(400).send({ error: "Invalid video URL" });
   }

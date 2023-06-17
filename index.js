@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const ytdl = require("ytdl-core");
 const bodyParser = require("body-parser");
-const compression = require('compression');
+const compression = require("compression");
 
 // app.use(express.json());
 app.use(cors());
@@ -53,9 +53,13 @@ app.get("/download", async (req, res) => {
       hasVideo: true,
       hasAudio: true,
     });
-    const filename = info.videoDetails.title;
-    const result = filename.replace(/[^a-zA-Z\s]/g, "");
-    res.header("Content-Disposition", `attachment; filename="${result}.mp4"`);
+    // const filename = info.videoDetails.title;
+    // const result = filename.replace(/[^a-zA-Z\s]/g, "");
+    // const head = await res.header(
+    //   "Content-Disposition",
+    //   `attachment; filename="${encodeURIComponent(result)}.mp4"`
+    // );
+    // console.log(head);
     ytdl(videoUrl, { format: videoFormat }).pipe(res);
   } catch (error) {
     res.status(400).send({ error: "Invalid video URL" });

@@ -12,8 +12,8 @@ function Result({ data }) {
     saveAs(resu);
   };
 
-  // const baseUrl = process.env.REACT_APP_BASE_URL;
-  const baseUrl = "http://localhost:5000";
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+  // const baseUrl = "http://localhost:5000";
 
   return (
     <div className="flex justify-center mt-8 mx-2">

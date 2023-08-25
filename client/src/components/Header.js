@@ -11,7 +11,7 @@ function Header() {
   const [loading, setLoading] = useState(false);
 
   const baseUrl = process.env.REACT_APP_BASE_URL;
-  // const baseUrl = "http://localhost:5000";
+  // const baseUrl2 = "http://15.207.203.182:5000";
 
   const handleSubmit = async () => {
     if (videoUrl) {

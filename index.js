@@ -16,7 +16,7 @@ app.use(express.json({ limit: "10mb" }));
 
 app.post("/api/get-info", async (req, res) => {
   const { videoUrl } = req.body;
-
+console.log(videoUrl)
   try {
     const videoId = ytdl.getURLVideoID(videoUrl);
 

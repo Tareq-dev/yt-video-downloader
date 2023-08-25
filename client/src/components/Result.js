@@ -6,7 +6,10 @@ function Result({ data }) {
   const formateData = data?.data?.formateData.info.filter(
     (f) => f.hasAudio === true
   );
-  const [resu, setResu] = useState(formateData[0]?.url || ""); // Set the initial value to the first option's value, or an empty string if formateData is empty
+  const [resu, setResu] = useState(
+    formateData.length > 0 ? formateData[0].url : ""
+  );
+  // Set the initial value to the first option's value, or an empty string if formateData is empty
 
   const handleVideoDownload = async () => {
     saveAs(resu);

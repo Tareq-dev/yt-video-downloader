@@ -14,8 +14,10 @@ function Result({ data }) {
   const handleVideoDownload = async () => {
     saveAs(resu);
   };
+  const baseUrl =
+    "http://ec2-15-207-203-182.ap-south-1.compute.amazonaws.com:5000";
 
-  const baseUrl = process.env.REACT_APP_BASE_URL;
+  // const baseUrl = process.env.REACT_APP_BASE_URL;
   // const baseUrl = "http://localhost:5000";
 
   return (

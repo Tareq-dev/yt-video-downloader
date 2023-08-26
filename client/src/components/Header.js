@@ -10,14 +10,15 @@ function Header() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const baseUrl = process.env.REACT_APP_BASE_URL;
+  // const baseUrl = process.env.REACT_APP_BASE_URL;
   // const baseUrl2 = "http://15.207.203.182:5000";
+  const baseUrl2 = "http://ec2-15-207-203-182.ap-south-1.compute.amazonaws.com:5000";
 
   const handleSubmit = async () => {
     if (videoUrl) {
       try {
         setLoading(true);
-        const response = await fetch(`${baseUrl}/api/get-info`, {
+        const response = await fetch(`${baseUrl2}/api/get-info`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ videoUrl }),
